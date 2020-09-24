@@ -19,7 +19,7 @@ class Config(object):
     # chunk size that should be used with requests
     CHUNK_SIZE = int(os.environ.get("CHUNK_SIZE", 128))
     # default thumbnail to be used in the videos
-    DEF_THUMB_NAIL_VID_S = os.environ.get("DEF_THUMB_NAIL_VID_S", "https://placehold.it/90x90")
+    DEF_THUMB_NAIL_VID_S = os.environ.get("DEF_THUMB_NAIL_VID_S", "https://via.placeholder.com/200/0000FF/808080?Text=@DamienHelp")
     # maximum message length in Telegram
     MAX_MESSAGE_LENGTH = 4096
     # set timeout for subprocess
@@ -35,8 +35,8 @@ class Config(object):
     # add offensive API
     TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
     CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
-    LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech")
-    YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl")
+    LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "dl@DamienUserBot")
+    YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl@DamienUserBot")
     RCLONE_CONFIG = os.environ.get("RCLONE_CONFIG", "")
     DESTINATION_FOLDER = os.environ.get("DESTINATION_FOLDER", "TorrentLeech-Gdrive")
     GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech")
@@ -44,10 +44,10 @@ class Config(object):
     TELEGRAM_LEECH_COMMAND_G = os.environ.get("TELEGRAM_LEECH_COMMAND_G", "tleech")
     CANCEL_COMMAND_G = os.environ.get("CANCEL_COMMAND_G", "cancel")
     GET_SIZE_G = os.environ.get("GET_SIZE_G", "getsize")
-    STATUS_COMMAND = os.environ.get("STATUS_COMMAND", "status")
-    SAVE_THUMBNAIL = os.environ.get("SAVE_THUMBNAIL", "savethumbnail")
-    CLEAR_THUMBNAIL = os.environ.get("CLEAR_THUMBNAIL", "clearthumbnail")
+    STATUS_COMMAND = os.environ.get("STATUS_COMMAND", "status@DamienUserBot")
+    SAVE_THUMBNAIL = os.environ.get("SAVE_THUMBNAIL", "save@DamienUserBot")
+    CLEAR_THUMBNAIL = os.environ.get("CLEAR_THUMBNAIL", "clear@DamienUserBot")
     UPLOAD_AS_DOC = os.environ.get("UPLOAD_AS_DOC", "False")
-    PYTDL_COMMAND_G = os.environ.get("PYTDL_COMMAND_G", "pytdl")
-    LOG_COMMAND = os.environ.get("LOG_COMMAND", "log")
+    PYTDL_COMMAND_G = os.environ.get("PYTDL_COMMAND_G", "playlist@DamienUserBot")
+    LOG_COMMAND = os.environ.get("LOG_COMMAND", "log@DamienUserBot")
     CLONE_COMMAND_G = os.environ.get("CLONE_COMMAND_G", "gclone")
