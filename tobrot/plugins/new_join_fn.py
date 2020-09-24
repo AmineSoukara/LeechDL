@@ -38,20 +38,20 @@ async def help_message_f(client, message):
     #message_id = 99
     # display the /help
     
-    await message.reply_text("""⚡ JOIN TORRENT MIRROR  GROUP\n\n 👉Link: <a href="https://t.me/MaxxMirror">MAXX MIRROR GROUP</a>""", disable_web_page_preview=True)
+    await message.reply_text("""Hi Dear 👋, Welcome. Please Read Pinned Message \n\n● And Also Don't Forget To Follow Our Channel : <a href="https://t.me/helpbdarija">Help B'darija</a>""", disable_web_page_preview=True)
 
 
 async def rename_message_f(client, message):
     inline_keyboard = []
     inline_keyboard.append([
         pyrogram.InlineKeyboardButton(
-            text="read this?",
-            url="https://t.me/keralagram/698909"
+            text="💬 Damien Soukara",
+            url="https://t.me/aminesoukara"
         )
     ])
     reply_markup = pyrogram.InlineKeyboardMarkup(inline_keyboard)
     await message.reply_text(
-        "please use @renamebot",
+        "If U Want Something, DM",
         quote=True,
         reply_markup=reply_markup
     )
