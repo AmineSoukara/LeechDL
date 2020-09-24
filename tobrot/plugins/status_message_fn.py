@@ -164,7 +164,7 @@ async def exec_message_f(client, message):
 
 async def upload_document_f(client, message):
     imsegd = await message.reply_text(
-        "processing ..."
+        "⌛ ... Processing ... ⏳"
     )
     if message.from_user.id in AUTH_CHANNEL:
         if " " in message.text:
@@ -179,7 +179,7 @@ async def upload_document_f(client, message):
     await imsegd.delete()
 '''
 async def eval_message_f(client, message):
-    status_message = await message.reply_text("Processing ...")
+    status_message = await message.reply_text("⌛ ... Processing ... ⏳")
     cmd = message.text.split(" ", maxsplit=1)[1]
 
     reply_to_id = message.message_id
