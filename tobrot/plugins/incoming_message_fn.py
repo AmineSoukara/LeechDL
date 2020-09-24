@@ -45,7 +45,7 @@ async def incoming_purge_message_f(client, message):
 
 async def incoming_message_f(client, message):
     """/leech command"""
-    i_m_sefg = await message.reply_text("processing", quote=True)
+    i_m_sefg = await message.reply_text("<b>⏳ ... Processing ... ⏳</b>", quote=True)
     is_zip = False
     is_unzip = False
     is_unrar = False
@@ -64,7 +64,7 @@ async def incoming_message_f(client, message):
     LOGGER.info(dl_url)
     LOGGER.info(cf_name)
     if dl_url is not None:
-        await i_m_sefg.edit_text("extracting links")
+        await i_m_sefg.edit_text("🔻 ... <b>Extracting Links</b> ... 🔺️")
         # start the aria2c daemon
         aria_i_p = await aria_start()
         LOGGER.info(aria_i_p)
@@ -78,7 +78,7 @@ async def incoming_message_f(client, message):
         # create download directory, if not exist
         if not os.path.isdir(new_download_location):
             os.makedirs(new_download_location)
-        await i_m_sefg.edit_text("trying to download")
+        await i_m_sefg.edit_text("♻️ ... <b>Trying To Download</b> ... ♻️")
         # try to download the "link"
         sagtus, err_message = await call_apropriate_function(
             aria_i_p,
@@ -97,13 +97,13 @@ async def incoming_message_f(client, message):
             await i_m_sefg.edit_text(err_message)
     else:
         await i_m_sefg.edit_text(
-            "**FCUK**! wat have you entered. \nPlease read /help \n"
+            "**FUCK**! What Have You Entered. \nPlease Read /help Or Pinned Message\n"
             f"<b>API Error</b>: {cf_name}"
         )
 #
 async def incoming_gdrive_message_f(client, message):
     """/gleech command"""
-    i_m_sefg = await message.reply_text("processing", quote=True)
+    i_m_sefg = await message.reply_text("<b>⏳ ... Processing ... ⏳</b>", quote=True)
     is_zip = False
     is_unzip = False
     is_unrar = False
@@ -122,7 +122,7 @@ async def incoming_gdrive_message_f(client, message):
     LOGGER.info(dl_url)
     LOGGER.info(cf_name)
     if dl_url is not None:
-        await i_m_sefg.edit_text("extracting links")
+        await i_m_sefg.edit_text("🔻 ... <b>Extracting Links</b> ... 🔺️")
         # start the aria2c daemon
         aria_i_p = await aria_start()
         LOGGER.info(aria_i_p)
@@ -136,7 +136,7 @@ async def incoming_gdrive_message_f(client, message):
         # create download directory, if not exist
         if not os.path.isdir(new_download_location):
             os.makedirs(new_download_location)
-        await i_m_sefg.edit_text("trying to download")
+        await i_m_sefg.edit_text("♻️ ... <b>Trying To Download</b> ... ♻️")
         # try to download the "link"
         await call_apropriate_function_g(
             aria_i_p,
@@ -152,14 +152,14 @@ async def incoming_gdrive_message_f(client, message):
         )
     else:
         await i_m_sefg.edit_text(
-            "**FCUK**! wat have you entered. \nPlease read /help \n"
+            "**FUCK**! What Have You Entered. \nPlease Read /help Or Pinned Message\n"
             f"<b>API Error</b>: {cf_name}"
         )
 
 
 async def incoming_youtube_dl_f(client, message):
     """ /ytdl command """
-    i_m_sefg = await message.reply_text("processing", quote=True)
+    i_m_sefg = await message.reply_text("<b>⏳ ... Processing ... ⏳</b>", quote=True)
     # LOGGER.info(message)
     # extract link from message
     dl_url, cf_name, yt_dl_user_name, yt_dl_pass_word = await extract_link(
@@ -172,7 +172,7 @@ async def incoming_youtube_dl_f(client, message):
                 #gg.write("I am noob and don't know what to do that's why I have did this")
     LOGGER.info(cf_name)
     if dl_url is not None:
-        await i_m_sefg.edit_text("extracting links")
+        await i_m_sefg.edit_text("🔻 ... <b>Extracting Links</b> ... 🔺️")
         current_user_id = message.from_user.id
         # create an unique directory
         user_working_dir = os.path.join(DOWNLOAD_LOCATION, str(current_user_id))
@@ -207,24 +207,24 @@ async def incoming_youtube_dl_f(client, message):
             )
     else:
         await i_m_sefg.edit_text(
-            "**FCUK**! wat have you entered. \nPlease read /help \n"
+            "**FUCK**! What Have You Entered. \nPlease Read /help Or Pinned Message\n"
             f"<b>API Error</b>: {cf_name}"
         )
 #playlist
 async def g_yt_playlist(client, message):
     """ /pytdl command """
-    #i_m_sefg = await message.reply_text("Processing...you should wait🤗", quote=True)
+   # i_m_sefg = await message.reply_text("Processing...You Should Wait 🤗", quote=True)
     usr_id = message.from_user.id
     G_DRIVE = False
     if len(message.command) > 1:
         if message.command[1] == "gdrive":
             G_DRIVE = True
     if 'youtube.com/playlist' in message.reply_to_message.text:
-        i_m_sefg = await message.reply_text("Downloading...you should wait🤗", quote=True)
+        i_m_sefg = await message.reply_text("Downloading ... You Should Wait 🤗", quote=True)
         await yt_playlist_downg(message.reply_to_message, i_m_sefg, G_DRIVE)
     
     else:
-        await message.reply_text("Reply to youtube playlist link only 🙄")
+        await message.reply_text("Reply To Youtube Playlist Link Only 🙄")
         
  #
 async def g_clonee(client, message):
@@ -240,4 +240,4 @@ async def g_clonee(client, message):
         await gclone.gcl()
         await gclone.link_gen_size()
     else:
-        await message.reply_text("<b>😡FCUK!What have you entered 😒:You should reply to a message, which format should be [ID of Gdrive file/folder Name of the file/folder]\nOr read Github for detailled information</b>")
+        await message.reply_text("<b>😡FUCK! What Have You Entered 😒 : You Should Reply To A Message, Which Format Should Be [ID Of Gdrive File/Folder Name Of The File/Folder]\nOr Read Git For Detailled Information</b>")
