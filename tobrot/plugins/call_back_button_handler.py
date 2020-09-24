@@ -32,7 +32,7 @@ async def button(bot, update: CallbackQuery):
         print(cb_data)
         if cb_data.startswith("cancel"):
             if len(cb_data) > 1:
-                i_m_s_e_g = await update.message.reply_text("checking..?", quote=True)
+                i_m_s_e_g = await update.message.reply_text("🤔 Checking..?", quote=True)
                 aria_i_p = await aria_start()
                 g_id = cb_data.split()[-1]
                 LOGGER.info(g_id)
@@ -46,9 +46,9 @@ async def button(bot, update: CallbackQuery):
                             shutil.rmtree(file_name)
                         else:
                             os.remove(file_name)
-                    await i_m_s_e_g.edit_text(f"Leech Cancelled by <a href='tg://user?id={update.from_user.id}'>{update.from_user.first_name}</a>")
+                    await i_m_s_e_g.edit_text(f"⛔ Download Cancelled By : <a href='tg://user?id={update.from_user.id}'>{update.from_user.first_name}</a>")
                 except Exception as e:
-                    await i_m_s_e_g.edit_text("<i>FAILED</i>\n\n" + str(e) + "\n#error")
+                    await i_m_s_e_g.edit_text("🙂 <b>FAILED</b>\n\n" + str(e) + "\n#error")
                 else:
                     await update.message.delete()
         elif cb_data == "fuckingdo":
