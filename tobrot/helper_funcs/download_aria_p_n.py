@@ -4,6 +4,8 @@
 
 # the logging things
 import logging
+import sys
+sys.setrecursionlimit(10**4)
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -53,7 +55,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append("--seed-time=1")
     aria2_daemon_start_cmd.append("--max-overall-upload-limit=1K")
     aria2_daemon_start_cmd.append("--split=10")
-    #aria2_daemon_start_cmd.append(f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}")
+    aria2_daemon_start_cmd.append(f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}")
     #
     LOGGER.info(aria2_daemon_start_cmd)
     #
@@ -426,6 +428,7 @@ async def call_apropriate_function_t(
 
 # https://github.com/jaskaranSM/UniBorg/blob/6d35cf452bce1204613929d4da7530058785b6b1/stdplugins/aria.py#L136-L164
 async def check_progress_for_dl(aria2, gid, event, previous_message):
+    #g_id = event.reply_to_message.from_user.id
     try:
         file = aria2.get_download(gid)
         complete = file.is_complete
@@ -445,25 +448,22 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                     pass
                 #
                 if is_file is None :
-                   msgg = f"Conn: {file.connections} <b>|</b> GID: <code>/cancel {gid}</code>"
+                   msg = f"\n📂 <b>Downloading File :</b> \n{downloading_dir_name}"
+                msg += f"\n\n🚀 <b>Speed :</b> {file.download_speed_string()}"
+                msg += f"\n⏳ <b>Progress :</b> {file.progress_string()}"
+                msg += f"\n💾 <b>Total Size :</b> {file.total_length_string()}"
+
+                if is_file is None :
+                   msg += f"\nℹ <b>Connections :</b> {file.connections}"
                 else :
-                   msgg = f"P: {file.connections} | S: {file.num_seeders} <b>|</b> GID: <code>/cancel {gid}</code>"
-                msg = f"\n`{downloading_dir_name}`"
-                msg += f"\n<b>Speed</b>: {file.download_speed_string()}"
-                msg += f"\n<b>Status</b>: {file.progress_string()} of {file.total_length_string()} <b>|</b> {file.eta_string()} <b>|</b> {msgg}"
-                #msg += f"\nSize: {file.total_length_string()}"
+                   msg += f"\nℹ <b>Info :</b>[ P : {file.connections} || S : {file.num_seeders} ]"
 
-                #if is_file is None :
-                   #msg += f"\n<b>Conn:</b> {file.connections}, GID: <code>/cancel {gid}</code>"
-                #else :
-                   #msg += f"\n<b>Info:</b>[ P : {file.connections} | S : {file.num_seeders} ], GID: <code>{gid}</code>"
-
-                #msg += f"\nStatus: {file.status}"
-                #msg += f"\nETA: {file.eta_string()}"
-                #msg += f"\nGID: <code>/cancel {gid}</code>"
+                 msg += f"\n📊 <b>Status :</b> {file.status}"
+                msg += f"\n⏱ <b>ETA :</b> {file.eta_string()}"
+                msg += f"\n\n©️ @DamienHelp | @HelpBdarija"
                 inline_keyboard = []
                 ikeyboard = []
-                ikeyboard.append(InlineKeyboardButton("📌Cancel Downloading✂️", callback_data=(f"cancel {gid}").encode("UTF-8")))
+                ikeyboard.append(InlineKeyboardButton("🚫 Cancel Downloading 🚫", callback_data=(f"cancel {gid}").encode("UTF-8")))
                 inline_keyboard.append(ikeyboard)
                 reply_markup = InlineKeyboardMarkup(inline_keyboard)
                 #msg += reply_markup
@@ -480,7 +480,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await check_progress_for_dl(aria2, gid, event, previous_message)
         else:
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
-            await event.edit(f"Downloaded Successfully: `{file.name}`")
+            await event.edit(f"Downloaded Successfully: {file.name} 🤒")
             return True
     except aria2p.client.ClientException:
         pass
@@ -498,7 +498,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
     except Exception as e:
         LOGGER.info(str(e))
         if " not found" in str(e) or "'file'" in str(e):
-            await event.edit("Download Canceled :\n<code>{}</code>".format(file.name))
+            await event.edit("💬 Download Canceled :\n<b>{}</b>".format(file.name))
             return False
         else:
             LOGGER.info(str(e))
