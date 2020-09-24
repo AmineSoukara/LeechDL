@@ -109,7 +109,7 @@ if __name__ == "__main__" :
     #
     incoming_g_clear_handler = MessageHandler(
         g_clearme,
-        filters=filters.command(["renewme"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["renewme@DamienUserBot"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(incoming_g_clear_handler)
     #
@@ -139,27 +139,27 @@ if __name__ == "__main__" :
     #
     exec_message_handler = MessageHandler(
         exec_message_f,
-        filters=filters.command(["exec"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["exec@DamienUserBot"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(exec_message_handler)
     #
     '''
     eval_message_handler = MessageHandler(
         eval_message_f,
-        filters=filters.command(["eval"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["eval@DamienUserBot"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(eval_message_handler)
     '''
     #
     rename_message_handler = MessageHandler(
         rename_message_f,
-        filters=filters.command(["rename"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["admin@DamienUserBot"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(rename_message_handler)
     #
     upload_document_handler = MessageHandler(
         upload_document_f,
-        filters=filters.command(["upload"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["upload@DamienUserBot"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(upload_document_handler)
     #
@@ -171,7 +171,7 @@ if __name__ == "__main__" :
     #
     help_text_handler = MessageHandler(
         help_message_f,
-        filters=filters.command(["help"]) & filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(["help@DamienUserBot"]) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(help_text_handler)
     #
