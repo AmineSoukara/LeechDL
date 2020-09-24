@@ -244,9 +244,9 @@ async def call_apropriate_function(
         if message_to_send != "":
             mention_req_user = f"<a href='tg://user?id={user_id}'>Your Requested Files</a>\n\n"
             message_to_send = mention_req_user + message_to_send
-            message_to_send = message_to_send + "\n\n" + "#uploads"
+            message_to_send = message_to_send + "\n\n" + "©️ #Uploads @DamienHelp"
         else:
-            message_to_send = "<i>FAILED</i> to upload files. 😞😞"
+            message_to_send = "<i>FAILED</i> To Upload Files. 😞"
         await user_message.reply_text(
             text=message_to_send,
             quote=True,
@@ -414,7 +414,7 @@ async def call_apropriate_function_t(
     if message_to_send != "":
         mention_req_user = f"<a href='tg://user?id={user_id}'>Your Requested Files</a>\n\n"
         message_to_send = mention_req_user + message_to_send
-        message_to_send = message_to_send + "\n\n" + "#uploads"
+        message_to_send = message_to_send + "\n\n" + "©️ #uploads @DamienHelp"
     else:
         message_to_send = "<i>FAILED</i> to upload files. 😞😞"
     await sent_message_to_update_tg_p.reply_to_message.reply_text(
@@ -458,7 +458,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                 else :
                    msg += f"\nℹ <b>Info :</b>[ P : {file.connections} || S : {file.num_seeders} ]"
 
-                 msg += f"\n📊 <b>Status :</b> {file.status}"
+                #msg += f"\n📊 <b>Status :</b> {file.status}"
                 msg += f"\n⏱ <b>ETA :</b> {file.eta_string()}"
                 msg += f"\n\n©️ @DamienHelp | @HelpBdarija"
                 inline_keyboard = []
